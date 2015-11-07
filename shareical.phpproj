@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Name>shareical</Name>
+    <ProjectGuid>c3c41aeb-cd41-4438-84c6-d45eee2a0583</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>shareical</RootNamespace>
+    <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
+    <AssemblyName>shareical</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <IncludeDebugInformation>false</IncludeDebugInformation>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="frontend.php" />
+    <Compile Include="config-dist.php" />
+    <Compile Include="backend.php" />
+    <Compile Include="index.php" />
+    <Compile Include="localization\en.php" />
+    <Compile Include="localization\de.php" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="composer.json" />
+    <Content Include="glyphicons-46-calendar.png" />
+    <Content Include="robots.txt" />
+    <Content Include="shareical.css" />
+    <Content Include="version.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="localization\" />
+  </ItemGroup>
+</Project>
