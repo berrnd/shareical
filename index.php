@@ -12,7 +12,8 @@ if (BACKEND_USER != '')
             BACKEND_USER => BACKEND_PASSWORD
         ],
         'realm' => 'shareical',
-        'path' => ['/admin', '/api']
+        'path' => ['/admin', '/api'],
+        'insecure' => INSECURE
     ]));
 }
 

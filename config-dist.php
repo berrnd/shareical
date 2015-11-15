@@ -3,6 +3,9 @@
 //Application base url with an trailing slash
 define('APP_ROOT_URL', 'http://localhost:54452/');
 
+//You need to set this to TRUE if you don't use HTTPS - but why should you do this?
+define('INSECURE', false);
+
 //Possible values: en, de
 define('LANGUAGE', 'en');
 
