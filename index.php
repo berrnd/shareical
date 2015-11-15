@@ -33,6 +33,7 @@ $webApp->post('/api/create-share-link', function () use ($webApp)
     }
     else
     {
+        $icaLink = str_replace('webcal://', 'http://', $icaLink);
         $jsonString = json_encode(array('icallink' => $icaLink, 'headline' => $headline));
         $randomString = generate_random_string(URL_LENGTH);
         file_put_contents("data/$randomString.txt", $jsonString);
