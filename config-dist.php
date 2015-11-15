@@ -16,8 +16,8 @@ define('BACKEND_PASSWORD', 'admin');
 //Proposed value for the headline
 define('HEADLINE_DEFAULT', 'Calendar for ');
 
-//A 32 character string used for encryption salting
-define('CRYPT_SALT', 'dPJ6o9ne8M8I3gHXCFmgFyktVXZ0kRtA');
+//Length of the data-part of the generated URLs
+define('URL_LENGTH', 32);
 
 //Default calendar view type, for possible values see http://fullcalendar.io/docs/views/Available_Views
 define('CALENDAR_VIEW', 'agendaWeek');

@@ -34,8 +34,9 @@ $webApp->post('/api/create-share-link', function () use ($webApp)
     else
     {
         $jsonString = json_encode(array('icallink' => $icaLink, 'headline' => $headline));
-        $jsonStringEncrypted = simple_encrypt($jsonString, CRYPT_SALT);
-        echo APP_ROOT_URL . 'index.php/calendar/' . urlencode($jsonStringEncrypted);
+        $randomString = generate_random_string(URL_LENGTH);
+        file_put_contents("data/$randomString.txt", $jsonString);
+        echo APP_ROOT_URL . 'index.php/calendar/' . $randomString;
     }
 });
 
@@ -45,25 +46,25 @@ $webApp->get('/admin', function () use ($webApp)
     include 'backend.php';
 });
 
-$webApp->get('/calendar/:cryptdata', function ($cryptdata) use ($webApp)
+$webApp->get('/calendar/:urldata', function ($urldata) use ($webApp)
 {
-    $data = json_decode(simple_decrypt($cryptdata, CRYPT_SALT));
+    $data = json_decode(file_get_contents("data/$urldata.txt"));
     $data->icalcontent = @file_get_contents($data->icallink);
-    
+
     include_once 'localization/' . LANGUAGE . '.php';
     include 'frontend.php';
 });
 
 $webApp->run();
 
-function simple_encrypt($text, $salt)
-{
-    return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $text, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
-}
-
-function simple_decrypt($text, $salt)
-{
-    return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $salt, base64_decode($text), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
+function generate_random_string($length) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
 }
 
 ?>
