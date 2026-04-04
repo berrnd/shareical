@@ -1,3 +1,8 @@
+-----
+> [!CAUTION]
+> This is archived and no longer maintained.
+-----
+
 # shareical
 Render iCalendar (.ics, .ical) files in a configurable view and share them with others
 
